@@ -1,0 +1,23 @@
+// Hand-labelled, synthetic development examples; not a user study or provider-quality evaluation.
+export const ASSOCIATION_FIXTURES = [
+  {id:'exact-1',group:'same wording',related:true,a:'把读书笔记整理成可以搜索的卡片。',b:'读书笔记应该支持搜索和标签。'},
+  {id:'exact-2',group:'same wording',related:true,a:'散步时观察公园的细节。',b:'每次散步都记录一个新的小细节。'},
+  {id:'exact-3',group:'same wording',related:true,a:'给待办事项增加下一步。',b:'任务清单里要写清楚下一步动作。'},
+  {id:'exact-4',group:'same wording',related:true,a:'整理文献里的实验想法。',b:'让实验想法在读完文献后形成记录。'},
+  {id:'exact-5',group:'same wording',related:true,a:'每天写作之前先列提纲。',b:'列提纲可以帮助开始每天的写作。'},
+  {id:'exact-6',group:'same wording',related:true,a:'用照片记录旅行的路线。',b:'旅行回来把照片和路线整理在一起。'},
+  {id:'paraphrase-1',group:'different wording',related:true,a:'记下作者没有回答的问题。',b:'发现知识缺口，寻找值得深入的方向。'},
+  {id:'paraphrase-2',group:'different wording',related:true,a:'日程应该根据轻重缓急调整。',b:'需要一个方便安排时间规划的界面。'},
+  {id:'paraphrase-3',group:'different wording',related:true,a:'复习应该隔一段时间再来一次。',b:'让遗忘的内容重新出现。'},
+  {id:'paraphrase-4',group:'different wording',related:true,a:'笔记需要能够再次利用。',b:'知识管理要帮助把碎片重新组合。'},
+  {id:'paraphrase-5',group:'different wording',related:true,a:'交互过程应该减少犹豫。',b:'希望改善用户体验中的选择负担。'},
+  {id:'paraphrase-6',group:'different wording',related:true,a:'待办必须有清楚的起点。',b:'给任务清单写一个可开始的小动作。'},
+  {id:'negative-1',group:'unrelated',related:false,a:'安排周末的登山路线。',b:'给财务报表增加导出功能。'},
+  {id:'negative-2',group:'unrelated',related:false,a:'买一盆适合窗台的植物。',b:'让论文工具显示引用来源。'},
+  {id:'negative-3',group:'unrelated',related:false,a:'换一个更舒服的枕头。',b:'优化软件加载时的提示。'},
+  {id:'negative-4',group:'unrelated',related:false,a:'记录这次烹饪的调味比例。',b:'设计一个教学课程的复习环节。'},
+  {id:'negative-5',group:'unrelated',related:false,a:'设计银行排队的交互屏幕。',b:'用户体验研究运动手表的触感。'},
+  {id:'negative-6',group:'unrelated',related:false,a:'睡前复习外语词汇。',b:'遗忘密码以后如何恢复账号。'},
+  {id:'negative-7',group:'unrelated',related:false,a:'记下今天的灵感，想一个小说人物。',b:'一个念头：把自行车车灯换成更亮的。'},
+  {id:'negative-8',group:'unrelated',related:false,a:'研究厨房收纳的空间。',b:'注意夜间路口的行人安全。'},
+];
