@@ -1,0 +1,9 @@
+{
+  "name": "inspiration-inbox",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "本地优先的灵感收件箱，零第三方依赖",
+  "scripts": { "start": "node scripts/serve.mjs", "test": "node --test" },
+  "engines": { "node": ">=22" }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="随手存下一个念头，在新内容里找回旧灵感。数据留在你的浏览器。">
+  <title>拾念 · 灵感收件箱</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./model.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到内容</a>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">✳</span><span>拾念<small>灵感收件箱</small></span></a>
+      <div class="nav-label">你的思考空间</div>
+      <nav aria-label="主要导航">
+        <button class="nav-item active" data-view="inbox"><span>▤</span>全部灵感<b id="count-inbox">0</b></button>
+        <button class="nav-item" data-view="connections"><span>⤳</span>灵感之间<b id="count-links">0</b></button>
+        <button class="nav-item" data-view="archive"><span>▱</span>已归档<b id="count-archive">0</b></button>
+      </nav>
+      <div class="nav-label tags-label">常用标签</div><div id="tag-nav" class="tag-nav"></div>
+      <div class="sidebar-bottom"><div class="local-badge"><i></i>留在你的浏览器</div><p>想法只属于你。记得定期导出备份。</p><button id="settings-open" class="text-button">备份与使用说明 ↗</button></div>
+    </aside>
+    <main id="main">
+      <header class="topbar"><span id="date-label"></span><div><span id="model-mode" class="mode-pill">本地整理</span><button id="model-open" class="quiet">连接我的模型 ↗</button></div></header>
+      <section class="hero"><div class="eyebrow">A LITTLE THOUGHT, A NEW POSSIBILITY</div><h1>把一闪而过，<br>变成下一步<span>。</span></h1><p>不必想完整。先留下来，连接会慢慢发生。</p></section>
+      <section class="composer" aria-label="记录新灵感">
+        <form id="capture-form"><label for="idea-input" class="sr-only">你的新想法</label><textarea id="idea-input" maxlength="12000" placeholder="此刻，你在想什么？" required></textarea><div class="source-row" id="source-row" hidden><label for="source-input">来源链接</label><input id="source-input" type="url" placeholder="https://…（仅保存链接，不读取正文）" maxlength="2000"></div><div class="composer-footer"><div><button type="button" id="source-toggle" class="quiet">＋ 添加来源</button><span class="hint desktop-hint">Ctrl / ⌘ + Enter 保存</span></div><button type="submit" class="primary">收下灵感 <span aria-hidden="true">↗</span></button></div><p id="auto-status" class="auto-status" role="status" hidden></p></form>
+      </section>
+      <section class="collection"><div class="collection-toolbar"><div><h2 id="view-title">最近拾起的念头</h2><span id="view-subtitle">先记录，再慢慢展开。</span></div><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">搜索灵感</span><input id="search" type="search" placeholder="搜索想法、标签…" maxlength="300"></label></div><div id="filter-banner" hidden></div><div id="cards" class="cards"></div></section>
+      <footer class="main-footer"><span>每一个念头，都可能有它的下一页。</span><button id="settings-compact" class="footer-button">备份与说明</button><span>拾念 · v0.1</span></footer>
+    </main>
+    <aside class="right-rail"><div class="rail-note"><span class="note-star" aria-hidden="true">✧</span><h3>让想法再见一次面</h3><p>新念头保存后，会寻找有共同词语的旧卡片。关联只是线索，由你决定是否连起来。</p><div class="note-rule"></div><span class="tiny-label">今天的小提示</span><p class="note-quote">“有没有一个想法，<br>值得再往前走一步？”</p></div><div class="rail-status"><span>已经留下</span><strong id="total-stat">0<small> 个念头</small></strong><span id="connection-stat">0 条已确认的联系</span></div><button id="examples" class="example-button">看看三张示例卡片 <span>↗</span></button><p class="rail-fine">示例仅在你点击后加入。<br>本地可用，AI 连接自己的服务。</p></aside>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="detail-dialog"><form id="detail-form"><div class="dialog-head"><span class="eyebrow">一个念头的下一页</span><button type="button" class="icon-button" data-close="detail-dialog" aria-label="关闭详情">×</button></div><label for="detail-title">标题</label><input id="detail-title" maxlength="100" required><label for="detail-raw">当时的原话 · 保存后保留</label><div id="detail-raw" class="raw-note"></div><div id="detail-source"></div><label for="detail-tags">标签（用逗号分开，最多 6 个）</label><input id="detail-tags" maxlength="180"><label for="detail-next">下一步（没有也没关系）</label><textarea id="detail-next" maxlength="1000" rows="2" placeholder="一个具体、可以开始的小动作"></textarea><div class="detail-actions"><button type="submit" class="primary">保存修改</button><button type="button" id="detail-ai" class="secondary">让常用 AI 帮忙 ↗</button><button type="button" id="detail-archive" class="quiet">归档</button></div></form><div class="related-section"><h3>可能有关的旧念头</h3><p class="hint">按共同词语推荐，尚未经你确认。</p><div id="detail-related"></div><h3>已经连起来</h3><div id="detail-links"></div></div></dialog>
+  <dialog id="ai-dialog"><div class="dialog-head"><span class="eyebrow">与你的 AI 一起想</span><button class="icon-button" data-close="ai-dialog" aria-label="关闭 AI 协作">×</button></div><h2>让你的模型帮忙整理</h2><p class="dialog-description">先查看本次请求包含的内容，再发送到你连接的模型。也可以复制到常用 AI 软件，将它返回的 JSON 放回来。</p><div class="step-label">01 / 查看请求，交给 AI</div><p id="ai-scope" class="hint"></p><label class="sr-only" for="ai-prompt">整理请求</label><textarea id="ai-prompt" readonly rows="6"></textarea><div class="button-row"><button id="call-model" class="primary">发送到我的模型</button><button id="cancel-model" class="secondary" hidden>取消请求</button><button id="copy-prompt" class="secondary">复制整理请求</button><a class="secondary" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开 ChatGPT ↗</a><span class="hint">也可粘贴到其他 AI 软件</span></div><p id="model-call-status" class="hint" role="status"></p><div class="step-label">02 / 查看结果，确认保存</div><label class="sr-only" for="ai-result">AI 返回的 JSON</label><textarea id="ai-result" rows="5" maxlength="50000" placeholder='模型结果会出现在这里；也可以手动粘贴完整 JSON…'></textarea><button id="preview-ai" class="secondary">检查并预览结果</button><div id="ai-preview" hidden></div></dialog>
+  <dialog id="settings-dialog"><div class="dialog-head"><span class="eyebrow">照顾好你的灵感</span><button class="icon-button" data-close="settings-dialog" aria-label="关闭使用说明">×</button></div><h2>备份与使用说明</h2><p class="dialog-description">卡片保存在当前设备、当前浏览器。换设备、清除网站数据或使用无痕窗口时，不会自动同步。</p><div class="settings-box"><h3>带走你的卡片</h3><p>备份包含原话、标签、下一步、已确认及已忽略的关联。导入会合并，已有同 ID 卡片保留当前版本。</p><div class="button-row"><button id="export" class="primary">导出备份</button><button id="import-open" class="secondary">导入备份</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></div><div class="settings-box"><h3>连接自己的模型</h3><p>右上角“连接我的模型”支持 Chat Completions 兼容服务。密钥仅保留在当前页面内存，不写入卡片、备份或 GitHub。刷新页面后需重新连接。开启自动整理会发送新原话及最多三张候选旧卡片；也可打开卡片，检查请求后逐次调用。</p><p>接口需要允许本站跨域访问。不支持时请使用自己的可信网关；本项目不提供公共密钥转发服务。</p></div><div class="settings-box"><h3>无需密钥的 AI 协作</h3><p>打开一张卡片，选择“让常用 AI 帮忙”。请求会包含这一张卡片及最多三张候选旧卡片的原话；复制前可以查看。AI 结果经过检查、预览和你的确认后才保存。</p></div><div class="settings-box"><h3>关于第一版</h3><p>本地整理使用文字截取和关键词匹配，不代表模型理解。暂不提供后台监控、网页正文抓取或云端同步。可以使用手机键盘自带的语音输入。</p><p>支持的浏览器可将本网页添加到主屏幕。首次联网访问后，应用文件会缓存，离线时仍可记录；调用模型需要联网。</p></div><p class="hint">公开的是程序代码。你记录的内容不会自动上传到 GitHub。</p></dialog>
+  <dialog id="model-dialog"><form id="model-form" autocomplete="off"><div class="dialog-head"><span class="eyebrow">连接属于你的模型</span><button type="button" class="icon-button" data-close="model-dialog" aria-label="关闭模型连接">×</button></div><h2>模型服务，由你选择</h2><p class="dialog-description">支持 Chat Completions 兼容接口。填写自己的服务或个人网关；调用由浏览器直接发出，费用由你的模型账号承担。</p><label for="model-endpoint">完整接口地址（包含 /chat/completions）</label><input id="model-endpoint" type="url" maxlength="2000" required placeholder="https://你的服务/v1/chat/completions" autocomplete="off"><label for="model-name">模型名称</label><input id="model-name" maxlength="120" required placeholder="填写服务提供的模型 ID" autocomplete="off"><label for="model-key">你的 API 密钥（仅保留在当前页面内存）</label><input id="model-key" type="password" maxlength="1000" placeholder="无密钥的个人服务可留空" autocomplete="new-password" spellcheck="false"><div class="settings-box"><label class="check-row"><input id="model-auto" type="checkbox">新卡片保存后，自动交给这个模型整理</label><p>开启后，每次新记录会发送当前原话及最多三张候选旧卡片。原话先保存，模型失败不会丢失卡片；候选关联仍需手动确认。</p></div><p class="hint">仅向你填写的服务发送密钥和所选卡片内容。请使用可信服务及限额密钥。页面刷新后密钥和自动整理授权都会清除。模型服务必须允许本站跨域访问。</p><div class="button-row"><button type="submit" class="primary">保存本次连接</button><button id="test-model" type="button" class="secondary">保存并测试</button><button id="disconnect-model" type="button" class="quiet">断开并清除密钥</button></div><p class="hint">测试只发送固定的一句测试文字，不包含卡片，可能产生少量调用费用。</p><p id="model-config-status" class="hint" role="status"></p></form></dialog>
+  <noscript>请启用 JavaScript 来记录灵感。卡片保存在你的浏览器中。</noscript>
+</body></html>
